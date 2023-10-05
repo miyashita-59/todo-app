@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { auth } from '../firebase';
 import { User, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { Navigate, useNavigate } from "react-router-dom";
+import { Box, Button, Heading } from "@chakra-ui/react";
 const SignUp: React.FC  = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -30,14 +31,14 @@ const SignUp: React.FC  = () => {
     }, []);
   
     return (
-      <div>
+      <Box>
         {user ? (
           <Navigate to={`/`} />
         ) : (
         <>
-        <h1>ユーザ登録</h1>
+        <Heading bg={'#f7ecfc'} color={'rgb(156, 30, 210)'}>ユーザ登録</Heading>
         <form onSubmit={handleSubmit}>
-          <div>
+          <Box>
             <label>メールアドレス</label>
             <input
                 name="email"
@@ -45,8 +46,8 @@ const SignUp: React.FC  = () => {
                 placeholder="email"
                 onChange={(event) => handleChangeEmail(event)}
             />
-          </div>
-          <div>
+          </Box>
+          <Box>
             <label>パスワード</label>
             <input
                 name="password"
@@ -54,15 +55,15 @@ const SignUp: React.FC  = () => {
                 placeholder="password"
                 onChange={(event) => handleChangePassword(event)}
              />
-          </div>
-          <div>
-            <button onClick={login}>ログインはこちら</button>
-            <button type="submit">登録</button>
-          </div>
+          </Box>
+          <Box>
+            <Button onClick={login}>ログインはこちら</Button>
+            <Button type="submit">登録</Button>
+          </Box>
         </form>
         </>
         )}
-      </div>
+      </Box>
     );
   };
   

@@ -2,6 +2,7 @@ import { User, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/a
 import React, { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { Navigate, useNavigate } from "react-router-dom";
+import { Button, Heading } from "@chakra-ui/react";
 
 const Login: React.FC  = () => {
   const [loginEmail, setLoginEmail] = useState("");
@@ -39,7 +40,7 @@ const Login: React.FC  = () => {
         <Navigate to={`/`} />
       ) : (
       <>
-        <h1>ログインページ</h1>
+        <Heading bg={'#f7ecfc'} color={'rgb(156, 30, 210)'}>ログインページ</Heading>
         <form onSubmit={handleSubmit}>
           <div>
             <label>メールアドレス</label>
@@ -59,8 +60,8 @@ const Login: React.FC  = () => {
               onChange={(e) => setLoginPassword(e.target.value)}
             />
           </div>
-          <button onClick={signUp}>新規登録はこちら</button>
-          <button type="submit">ログイン</button>
+          <Button onClick={signUp}>新規登録はこちら</Button>
+          <Button type="submit">ログイン</Button>
         </form>
       </>
       )}

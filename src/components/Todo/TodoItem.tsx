@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import db from '../../firebase';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
+import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
 
 type TodoItemType = {
   todo: { id: string; text: string; timestamp: any; userId: string; };
@@ -59,30 +59,30 @@ const TodoItem: React.FC<TodoItemType> = (props) => {
               ref={updateInput}
               onChange={(e) => setUpdate(e.target.value)}
             />
-            <button className="updateBtn" onClick={() => updateItem(id)}>
+            <Button onClick={() => updateItem(id)}>
               更新
-            </button>
+            </Button>
           </form>
         </div>
       )}
 
-      <button className="deleteBtn" onClick={onOpen}>
+      <Button onClick={onOpen}>
         削除
-      </button>
+      </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay sx={{background:'rgba(123,123,123,0.5);',}} />
-        <ModalContent sx={{w:'300px', background: 'white', borderRadius: '10px', p:'10px', m: 'auto'}}>
+        <ModalOverlay />
+        <ModalContent>
           <ModalHeader>このTodoを削除しますか？</ModalHeader>
           <ModalBody>
             todo内容：{text}
           </ModalBody>
           <ModalFooter>
-            <button className="deleteBtn" onClick={() => deleteItem(id)}>
+            <Button onClick={() => deleteItem(id)}>
               削除
-            </button>
-            <button className="deleteBtn" onClick={onClose}>
+            </Button>
+            <Button onClick={onClose}>
               いいえ
-            </button>
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
