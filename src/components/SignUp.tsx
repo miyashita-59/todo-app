@@ -2,16 +2,20 @@ import React, { useEffect, useState } from "react";
 import { auth } from '../firebase';
 import { User, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { Navigate, useNavigate } from "react-router-dom";
-import { Box, Button, Heading } from "@chakra-ui/react";
+import { Box, Button, Card, FormControl, FormLabel, Heading, Input } from "@chakra-ui/react";
 const SignUp: React.FC  = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [user, setUser] = useState<User | null>(null);
     const navigate = useNavigate();
-    const handleSubmit = (event: any) => {
+    const handleSubmit = async (event: any) => {
       event.preventDefault();
       if (!email || !password) return alert("メールアドレス、パスワードを正しく入力してください");
-      createUserWithEmailAndPassword(auth, email, password);
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+      } catch (error) {
+        return alert('登録に失敗しました。');
+      }
     };
     const handleChangeEmail = (event: any) => {
       setEmail(event.currentTarget.value);
@@ -40,24 +44,23 @@ const SignUp: React.FC  = () => {
         <form onSubmit={handleSubmit}>
           <Box>
             <label>メールアドレス</label>
-            <input
-                name="email"
-                type="email"
-                placeholder="email"
-                onChange={(event) => handleChangeEmail(event)}
+            <Input
+              name="email"
+              type="email"
+              placeholder="email"
+              onChange={(event) => handleChangeEmail(event)}
             />
           </Box>
           <Box>
             <label>パスワード</label>
-            <input
-                name="password"
-                type="password"
-                placeholder="password"
-                onChange={(event) => handleChangePassword(event)}
-             />
+            <Input
+              name="password"
+              type="password"
+              placeholder="password"
+              onChange={(event) => handleChangePassword(event)}
+            />
           </Box>
-          <Box>
-            <Button onClick={login}>ログインはこちら</Button>
+          <Box textAlign={'end'}>
             <Button type="submit">登録</Button>
           </Box>
         </form>

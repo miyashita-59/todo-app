@@ -2,7 +2,7 @@ import { useState } from 'react';
 import db, { auth } from '../../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Button } from '@chakra-ui/react';
+import { Button, Input } from '@chakra-ui/react';
 
 const TodoInput: React.FC = () => {
   const [inputText, setInputText] = useState('');
@@ -20,8 +20,8 @@ const TodoInput: React.FC = () => {
   };
   return (
     <form onSubmit={onSubmitAdd} style={{ display: 'inline' }}>
-      <input onChange={(e) => setInputText(e.target.value)} value={inputText} />
-      <Button type='submit'>追加</Button>
+      <Input w='300px' onChange={(e) => setInputText(e.target.value)} value={inputText} />
+      <Button ml={5} type='submit'>追加</Button>
     </form>
   );
 };

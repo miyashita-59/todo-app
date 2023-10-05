@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import db from '../../firebase';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
-import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
+import { Box, Button, Flex, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
 
 type TodoItemType = {
   todo: { id: string; text: string; timestamp: any; userId: string; };
@@ -42,17 +42,25 @@ const TodoItem: React.FC<TodoItemType> = (props) => {
   return (
     <li className="todo-item">
       {isEdit === false ? (
-        <div onDoubleClick={() => setIsEdit(true)}>
-          <span>{text}</span>
-          <span className="date-text">
-            {new Date(timestamp?.toDate()).toLocaleString()}
-            {userId}
-          </span>
-        </div>
+        <Box onDoubleClick={() => setIsEdit(true)}>
+          <Flex>
+            <Box w='500px'>
+              <span>{text}</span>
+              <span className="date-text">
+                {new Date(timestamp?.toDate()).toLocaleString()}
+                {userId}
+              </span>
+            </Box>
+            <Button colorScheme='red' onClick={onOpen}>
+              削除
+            </Button>
+          </Flex>
+        </Box>
       ) : (
-        <div>
+        <Box>
           <form onSubmit={onSubmitUpdate}>
-            <input
+            <Flex align={'center'} gap={5}>
+            <Input
               type="text"
               className="update-input"
               placeholder={text}
@@ -62,13 +70,12 @@ const TodoItem: React.FC<TodoItemType> = (props) => {
             <Button onClick={() => updateItem(id)}>
               更新
             </Button>
+            </Flex>
           </form>
-        </div>
+        </Box>
       )}
 
-      <Button onClick={onOpen}>
-        削除
-      </Button>
+      
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -76,9 +83,9 @@ const TodoItem: React.FC<TodoItemType> = (props) => {
           <ModalBody>
             todo内容：{text}
           </ModalBody>
-          <ModalFooter>
-            <Button onClick={() => deleteItem(id)}>
-              削除
+          <ModalFooter gap={5}>
+            <Button colorScheme='red' onClick={() => deleteItem(id)}>
+              はい
             </Button>
             <Button onClick={onClose}>
               いいえ

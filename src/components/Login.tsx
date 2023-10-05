@@ -2,7 +2,7 @@ import { User, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/a
 import React, { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { Navigate, useNavigate } from "react-router-dom";
-import { Button, Heading } from "@chakra-ui/react";
+import { Box, Button, Heading, Input } from "@chakra-ui/react";
 
 const Login: React.FC  = () => {
   const [loginEmail, setLoginEmail] = useState("");
@@ -42,27 +42,29 @@ const Login: React.FC  = () => {
       <>
         <Heading bg={'#f7ecfc'} color={'rgb(156, 30, 210)'}>ログインページ</Heading>
         <form onSubmit={handleSubmit}>
-          <div>
+          <Box>
             <label>メールアドレス</label>
-            <input
+            <Input
               name="email"
               type="email"
               value={loginEmail}
               onChange={(e) => setLoginEmail(e.target.value)}
             />
-          </div>
-          <div>
+          </Box>
+          <Box>
             <label>パスワード</label>
-            <input
+            <Input
               name="password"
               type="password"
               value={loginPassword}
               onChange={(e) => setLoginPassword(e.target.value)}
             />
-          </div>
-          <Button onClick={signUp}>新規登録はこちら</Button>
+          </Box>
+          <Box textAlign={'end'}>
           <Button type="submit">ログイン</Button>
+          </Box>
         </form>
+        <Button onClick={signUp}>新規登録はこちら</Button>
       </>
       )}
     </>
