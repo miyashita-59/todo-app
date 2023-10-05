@@ -1,15 +1,21 @@
 import React from 'react';
-import TodoInput from './components/Todo/TodoInput';
-import TodoList from './components/Todo/TodoList';
-
 import './App.css';
+import SignUp from './components/SignUp';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Mypage from './components/Mypage';
+import Login from './components/Login';
 
 const App: React.FC = () => {
+  
   return (
     <div className="App">
-      <h1>Todoリスト</h1>
-      <TodoInput />
-      <TodoList />
+      <BrowserRouter>
+          <Routes>
+            <Route path={`/signup/`} element={<SignUp />} />
+            <Route path={`/login/`} element={<Login />} />
+            <Route path={`/`} element={<Mypage />} />
+          </Routes>
+      </BrowserRouter>
     </div>
   );
 };

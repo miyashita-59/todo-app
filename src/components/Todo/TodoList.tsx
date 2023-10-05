@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { db } from '../../firebase';
+import db from '../../firebase';
 import { collection, query, onSnapshot, orderBy } from 'firebase/firestore';
 import TodoItem from './TodoItem';
 
