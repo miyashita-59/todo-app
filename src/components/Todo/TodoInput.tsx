@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import db from '../../firebase';
+import db, { auth } from '../../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const TodoInput: React.FC = () => {
   const [inputText, setInputText] = useState('');
-
+  const [user] = useAuthState(auth);
   // TODO追加
   const onSubmitAdd = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -12,6 +13,7 @@ const TodoInput: React.FC = () => {
     await addDoc(collection(db, 'todos'), {
       text: inputText,
       timestamp: serverTimestamp(),
+      userId: user?.uid,
     });
     setInputText('');
   };

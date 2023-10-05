@@ -4,11 +4,11 @@ import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
 
 type TodoItemType = {
-  todo: { id: string; text: string; timestamp: any };
+  todo: { id: string; text: string; timestamp: any; userId: string; };
 };
 
 const TodoItem: React.FC<TodoItemType> = (props) => {
-  const { id, text, timestamp } = props.todo;
+  const { id, text, timestamp, userId } = props.todo;
 
   const [update, setUpdate] = useState('');
   const [isEdit, setIsEdit] = useState(false);
@@ -46,6 +46,7 @@ const TodoItem: React.FC<TodoItemType> = (props) => {
           <span>{text}</span>
           <span className="date-text">
             {new Date(timestamp?.toDate()).toLocaleString()}
+            {userId}
           </span>
         </div>
       ) : (
