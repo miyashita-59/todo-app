@@ -14,7 +14,7 @@ const TodoList: React.FC = () => {
     { id: '', text: '', timestamp: null },
   ]);
   useEffect(() => {
-    const q = query(collection(db, 'todos'), orderBy('timestamp', 'desc'));
+    const q = query(collection(db, 'todos'), orderBy('timestamp', 'asc'));
     const unSub = onSnapshot(q, async (snapshot) => {
       setTodos(
         snapshot.docs.map((doc) => ({

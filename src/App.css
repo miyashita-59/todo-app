@@ -1,38 +1,98 @@
 .App {
-  text-align: center;
+  font-family: sans-serif;
+  margin: 10px;
+}
+.App * {
+  box-sizing: border-box;
+}
+h1 {
+  color: chocolate;
+  font-size: 1.3rem;
+  background: #fae6cb;
+  padding: 10px;
+}
+form {
+  max-width: 960px;
+  margin: 0 auto;
+}
+input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-radius: 8px;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1em;
+  padding: 0.4em 0.8em;
+  margin: 5px auto;
+  border-radius: 4px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input:focus {
+  border: 1px solid rgba(0, 0, 0, 0.32);
+  box-shadow: none;
+  outline: none;
+  background: antiquewhite;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.4em 0.8em;
+  padding: 9px 25px;
+  color: #f15a24;
+  font-weight: bold;
+  letter-spacing: 0.5pt;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #f15a24;
+  border-radius: 8px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+button.deleteBtn {
+  background-color: #999;
+  border: none;
+  color: #fff;
+  padding: 5px 15px;
+  margin-left: auto;
+}
+button.updateBtn {
+  background-color: #f15a24;
+  border: none;
+  color: #fff;
+  padding: 5px 15px;
+  margin-left: auto;
+}
+ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+li {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-bottom: 1px dotted #ccc;
 }
-
-.App-link {
-  color: #61dafb;
+.date-text {
+  display: block;
+  font-size: 10px;
+  color: #999;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.todo-item > div:hover {
+  cursor: pointer;
+}
+.update-input {
+  border: none;
+  padding: 0 0;
+}
+.update-input:focus {
+  border: none;
+  background: none;
 }
