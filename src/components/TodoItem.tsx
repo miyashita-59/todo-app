@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { db } from '../firebase';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, background, useDisclosure } from '@chakra-ui/react';
 
 type TodoItemType = {
   todo: { id: string; text: string; timestamp: any };
@@ -12,6 +13,7 @@ const TodoItem: React.FC<TodoItemType> = (props) => {
   const [update, setUpdate] = useState('');
   const [isEdit, setIsEdit] = useState(false);
   const updateInput = useRef<HTMLInputElement>(null);
+  const {isOpen, onOpen, onClose} = useDisclosure();
 
   useEffect(() => {
     // 選択したアイテムにフォーカスを当てる
@@ -63,9 +65,26 @@ const TodoItem: React.FC<TodoItemType> = (props) => {
         </div>
       )}
 
-      <button className="deleteBtn" onClick={() => deleteItem(id)}>
+      <button className="deleteBtn" onClick={onOpen}>
         削除
       </button>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay sx={{background:'rgba(123,123,123,0.5);',}} />
+        <ModalContent sx={{w:'300px', background: 'white', borderRadius: '10px', p:'10px', m: 'auto'}}>
+          <ModalHeader>このTodoを削除しますか？</ModalHeader>
+          <ModalBody>
+            todo内容：{text}
+          </ModalBody>
+          <ModalFooter>
+            <button className="deleteBtn" onClick={() => deleteItem(id)}>
+              削除
+            </button>
+            <button className="deleteBtn" onClick={onClose}>
+              いいえ
+            </button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </li>
   );
 };

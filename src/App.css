@@ -6,9 +6,9 @@
   box-sizing: border-box;
 }
 h1 {
-  color: chocolate;
+  color: rgb(156, 30, 210);
   font-size: 1.3rem;
-  background: #fae6cb;
+  background: #f7ecfc;
   padding: 10px;
 }
 form {
@@ -35,7 +35,7 @@ input:focus {
   border: 1px solid rgba(0, 0, 0, 0.32);
   box-shadow: none;
   outline: none;
-  background: antiquewhite;
+  background: rgb(234, 215, 250);
 }
 
 button {
@@ -43,12 +43,12 @@ button {
   vertical-align: middle;
   margin: 0.4em 0.8em;
   padding: 9px 25px;
-  color: #f15a24;
+  color: #870dd3;
   font-weight: bold;
   letter-spacing: 0.5pt;
   text-decoration: none;
   background-color: #ffffff;
-  border: 1px solid #f15a24;
+  border: 1px solid #870dd3;
   border-radius: 8px;
   cursor: pointer;
   transition-duration: 0.3s;
@@ -65,7 +65,7 @@ button.deleteBtn {
   margin-left: auto;
 }
 button.updateBtn {
-  background-color: #f15a24;
+  background-color: #870dd3;
   border: none;
   color: #fff;
   padding: 5px 15px;
@@ -79,6 +79,7 @@ li {
   display: flex;
   align-items: center;
   border-bottom: 1px dotted #ccc;
+  max-width: 960px
 }
 .date-text {
   display: block;
