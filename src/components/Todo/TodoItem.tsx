@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, background, useDisclosure } from '@chakra-ui/react';
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
 
 type TodoItemType = {
   todo: { id: string; text: string; timestamp: any };
